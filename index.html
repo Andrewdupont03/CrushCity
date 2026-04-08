@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue VIP</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        /* Design inspiré du thème natif Telegram / Durger King */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--tg-theme-bg-color, #17212b);
+            color: var(--tg-theme-text-color, #ffffff);
+            margin: 0;
+            padding: 15px;
+        }
+        
+        .header {
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2b3643;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            background-color: var(--tg-theme-secondary-bg-color, #242f3d);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Remplace les src par tes photos sans fond */
+        .profile-pic {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            background-color: #1e2835;
+        }
+
+        .name-badge {
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .verified {
+            color: #3390ec; /* Le bleu officiel de Telegram */
+            font-size: 14px;
+        }
+
+        .action-btn {
+            background-color: var(--tg-theme-button-color, #e5a322); /* Le jaune Durger King */
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 6px;
+            padding: 8px 0;
+            width: 100%;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>🔥 Profils Vérifiés</h2>
+        <p>100% Réels. Zéro Fake.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="Profil 1" class="profile-pic">
+            <div class="name-badge">
+                Sarah, 22 <span class="verified">✅</span>
+            </div>
+            <p style="font-size: 12px; color: #8fa1b3; margin: 0;">Lomé</p>
+            <button class="action-btn" onclick="contacter('@sarah_tg')">💬 Discuter</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="Profil 2" class="profile-pic">
+            <div class="name-badge">
+                Amina, 24 <span class="verified">✅</span>
+            </div>
+            <p style="font-size: 12px; color: #8fa1b3; margin: 0;">Kégué</p>
+            <button class="action-btn" onclick="contacter('@amina_tg')">💬 Discuter</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialisation de la Web App Telegram
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand(); // Ouvre en plein écran
+
+        function contacter(username) {
+            // Cette fonction ferme la Web App et redirige vers le profil
+            window.Telegram.WebApp.openTelegramLink('https://t.me/' + username.replace('@', ''));
+        }
+    </script>
+</body>
+</html>
