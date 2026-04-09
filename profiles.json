@@ -33,5 +33,12 @@
         "ville": "\ud83d\udccdGongo/Kinshasa",
         "user": "@cherie_ladouce_brenda",
         "photo": "images/brenda_432.jpg"
+    },
+    {
+        "nom": "Lea",
+        "age": "23 ans",
+        "ville": "\ud83d\udccdFrance/Paris",
+        "user": "@lea95i",
+        "photo": "images/lea_444.jpg"
     }
 ]
