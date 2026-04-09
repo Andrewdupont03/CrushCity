@@ -12,5 +12,12 @@
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Sophiaaa79",
         "photo": "images/sophia_116.jpg"
+    },
+    {
+        "nom": "Maya",
+        "age": "26 ans",
+        "ville": "Afrique",
+        "user": "@juesmaya_14",
+        "photo": "images/maya_170.jpg"
     }
 ]
