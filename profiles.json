@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "nom": "Jocelyne",
+        "age": "23",
+        "ville": "Paris",
+        "user": "@Jeovanysmith",
+        "photo": "images/jocelyne_48.jpg"
+    }
+]
