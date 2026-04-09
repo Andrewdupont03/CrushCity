@@ -5,5 +5,12 @@
         "ville": "\ud83d\udccdFrance/Paris",
         "user": "@Jeovanysmith",
         "photo": "images/jocelyne_88.jpg"
+    },
+    {
+        "nom": "Sophia",
+        "age": "22 ans",
+        "ville": "France/Paris",
+        "user": "@Sophiaaa79",
+        "photo": "images/sophia_100.jpg"
     }
 ]
