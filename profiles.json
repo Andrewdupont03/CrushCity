@@ -26,5 +26,12 @@
         "ville": "\ud83d\udccd France/Paris",
         "user": "@kovanatacha23",
         "photo": "images/natacha_420.jpg"
+    },
+    {
+        "nom": "Brenda",
+        "age": "23 ans",
+        "ville": "\ud83d\udccdGongo/Kinshasa",
+        "user": "@cherie_ladouce_brenda",
+        "photo": "images/brenda_432.jpg"
     }
 ]
