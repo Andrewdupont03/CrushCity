@@ -117,5 +117,12 @@
         "ville": "\ud83d\udccdC\u00f4te d'Ivoire/Yamoussoukro",
         "user": "@Anelebizi",
         "photo": "images/anele_721.jpg"
+    },
+    {
+        "nom": "Colette",
+        "age": "24 ans",
+        "ville": "\ud83d\udccd France/Paris",
+        "user": "@linerou",
+        "photo": "images/colette_733.jpg"
     }
 ]
