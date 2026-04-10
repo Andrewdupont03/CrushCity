@@ -14,35 +14,43 @@
             margin: 0; 
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Empêche le scroll natif de la page entière */
+            overflow: hidden;
         }
         
-        /* --- SYSTEME DE SLIDE (UX CAPTIVANT) --- */
-        .app-container {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
+        /* --- SYSTEME DE SLIDE --- */
+        .app-container { width: 100vw; height: 100vh; overflow: hidden; position: relative; }
+        .swipe-wrapper { display: flex; width: 300vw; height: 100%; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform; }
+        .page { width: 100vw; height: 100%; overflow-y: auto; padding-bottom: 80px; box-sizing: border-box; }
+        .content-padding { padding: 15px; }
 
-        .swipe-wrapper {
+        /* --- FILTRES (CHIPS UX PRO) --- */
+        .category-bar {
             display: flex;
-            width: 300vw; /* 3 pages = 300% de la largeur */
-            height: 100%;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Animation très fluide type iOS */
-            will-change: transform;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            /* Masquer la barre de défilement mais garder le scroll */
+            scrollbar-width: none; 
         }
-
-        .page {
-            width: 100vw;
-            height: 100%;
-            overflow-y: auto; /* Permet le scroll vertical dans chaque page */
-            padding-bottom: 80px; /* Espace pour la barre de navigation */
-            box-sizing: border-box;
+        .category-bar::-webkit-scrollbar { display: none; }
+        
+        .category-chip {
+            background-color: #242f3d;
+            border: 1px solid #2c3b4a;
+            color: #8fa1b3;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            white-space: nowrap; /* Empêche le texte de passer à la ligne */
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-
-        .content-padding {
-            padding: 15px;
+        .category-chip.active {
+            background-color: #e5a322;
+            color: white;
+            border-color: #e5a322;
+            font-weight: bold;
         }
 
         /* --- STYLES EXISTANTS (GRILLE & CARTES) --- */
@@ -54,47 +62,18 @@
         .action-btn:active { opacity: 0.7; }
         .verified { color: #3390ec; }
 
-        /* L'état vide */
-        .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; height: 60vh; text-align: center; color: #8fa1b3; }
+        .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; height: 50vh; text-align: center; color: #8fa1b3; }
         .empty-icon { font-size: 50px; margin-bottom: 10px; }
         .empty-title { font-size: 20px; font-weight: bold; color: white; }
 
-        /* --- STYLES DES NOUVELLES SECTIONS --- */
+        /* --- STYLES DES SECTIONS --- */
         .info-box { background-color: #242f3d; padding: 20px; border-radius: 12px; border: 1px solid #2c3b4a; margin-bottom: 15px; }
         .info-box h3 { margin-top: 0; color: #e5a322; }
-        .info-box p { color: #8fa1b3; line-height: 1.5; font-size: 14px; }
-        .info-box ul { padding-left: 20px; color: #8fa1b3; font-size: 14px; line-height: 1.6; }
+        .info-box p, .info-box ul { color: #8fa1b3; font-size: 14px; line-height: 1.6; }
 
-        /* --- BARRE DE NAVIGATION (BOTTOM NAV) --- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background: rgba(23, 33, 43, 0.9);
-            backdrop-filter: blur(10px); /* Effet verre dépoli pro */
-            border-top: 1px solid #2c3b4a;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .nav-item {
-            background: none;
-            border: none;
-            color: #8fa1b3;
-            font-size: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            transition: color 0.3s;
-            width: 33%;
-        }
-
+        /* --- BARRE DE NAVIGATION EN BAS --- */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 70px; background: rgba(23, 33, 43, 0.9); backdrop-filter: blur(10px); border-top: 1px solid #2c3b4a; display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
+        .nav-item { background: none; border: none; color: #8fa1b3; font-size: 12px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; transition: color 0.3s; width: 33%; }
         .nav-item .icon { font-size: 22px; transition: transform 0.2s; }
         .nav-item.active { color: #e5a322; }
         .nav-item.active .icon { transform: scale(1.2); }
@@ -107,8 +86,15 @@
             
             <div class="page">
                 <div class="content-padding">
-                    <div class="header">🔥 Profils Vérifiés</div>
+                    <div class="header">💎 Catalogue VIP</div>
                     
+                    <div class="category-bar">
+                        <div class="category-chip active" onclick="filterCategory('tous', this)">Tous</div>
+                        <div class="category-chip" onclick="filterCategory('nuit chaude', this)">Nuit chaude 🔥</div>
+                        <div class="category-chip" onclick="filterCategory('relation serieuse', this)">Sérieuse 💍</div>
+                        <div class="category-chip" onclick="filterCategory('amis', this)">Amis 👋</div>
+                    </div>
+
                     <div class="empty-state" id="empty-state">
                         <div class="empty-icon">📭</div>
                         <div class="empty-title">Aucun profil</div>
@@ -123,13 +109,11 @@
             <div class="page">
                 <div class="content-padding">
                     <div class="header">👑 Mon Espace VIP</div>
-                    
                     <div class="info-box">
                         <h3>Statut du Compte</h3>
                         <p><strong>Niveau :</strong> Membre Privilège 🌟</p>
                         <p><strong>Accès :</strong> Illimité (Catalogue Sécurisé)</p>
                     </div>
-
                     <div class="info-box">
                         <h3>Vos Avantages</h3>
                         <ul>
@@ -144,12 +128,10 @@
             <div class="page">
                 <div class="content-padding">
                     <div class="header">🛡️ Sécurité & Charte</div>
-                    
                     <div class="info-box">
                         <h3>Protection des Profils</h3>
-                        <p>Nous prenons la vie privée très au sérieux. Ce groupe est un espace sécurisé (Safe Space).</p>
+                        <p>Nous prenons la vie privée très au sérieux. Ce groupe est un espace sécurisé.</p>
                     </div>
-
                     <div class="info-box">
                         <h3>Règles d'or</h3>
                         <ul>
@@ -166,16 +148,13 @@
 
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="switchTab(0, this)">
-            <span class="icon">🔍</span>
-            <span>Explorer</span>
+            <span class="icon">🔍</span><span>Explorer</span>
         </button>
         <button class="nav-item" onclick="switchTab(1, this)">
-            <span class="icon">👑</span>
-            <span>Mon VIP</span>
+            <span class="icon">👑</span><span>Mon VIP</span>
         </button>
         <button class="nav-item" onclick="switchTab(2, this)">
-            <span class="icon">🛡️</span>
-            <span>Sécurité</span>
+            <span class="icon">🛡️</span><span>Sécurité</span>
         </button>
     </nav>
 
@@ -183,61 +162,83 @@
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
 
-        // --- NOUVELLE FONCTION POUR LE GLISSEMENT (SWIPE) ---
+        // Fonction pour les onglets du bas (inchangée)
         function switchTab(pageIndex, element) {
-            // 1. Déplacer le wrapper (0vw, -100vw, -200vw)
-            const wrapper = document.getElementById('swipe-wrapper');
-            wrapper.style.transform = `translateX(-${pageIndex * 100}vw)`;
-
-            // 2. Mettre à jour la couleur du bouton actif
+            document.getElementById('swipe-wrapper').style.transform = `translateX(-${pageIndex * 100}vw)`;
             document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
+            if (window.Telegram.WebApp.HapticFeedback) window.Telegram.WebApp.HapticFeedback.selectionChanged();
+        }
+
+        const GITHUB_URL = "https://raw.githubusercontent.com/Andrewdupont03/CrushCity/main/profiles.json";
+        const grid = document.getElementById('grid');
+        const emptyState = document.getElementById('empty-state');
+        const emptyText = document.querySelector('.empty-text');
+        
+        // NOUVEAU : Variable pour stocker tous les profils chargés
+        let allProfiles = [];
+
+        // NOUVEAU : Fonction qui dessine les cartes (séparée pour pouvoir la réutiliser lors du filtre)
+        function renderProfiles(data) {
+            grid.innerHTML = ''; // On vide la grille
             
-            // 3. Petite vibration haptique si supporté par Telegram
-            if (window.Telegram.WebApp.HapticFeedback) {
-                window.Telegram.WebApp.HapticFeedback.selectionChanged();
+            if (!data || data.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'flex';
+                emptyText.innerText = "Aucun profil dans cette catégorie.";
+            } else {
+                grid.style.display = 'grid';
+                emptyState.style.display = 'none';
+                
+                // C'est TA logique exacte qui est conservée ici
+                data.forEach(p => {
+                    grid.innerHTML += `
+                        <div class="card">
+                            <img src="${p.photo}" class="profile-pic" onerror="this.src='https://via.placeholder.com/150'">
+                            <div style="margin-top:10px; font-weight:bold;">${p.nom}, ${p.age} <span class="verified">✅</span></div>
+                            <p style="font-size:12px; color:#8fa1b3;">${p.ville}</p>
+                            <button class="action-btn" onclick="window.Telegram.WebApp.openTelegramLink('https://t.me/${p.user.replace('@','')}')">💬 Discuter</button>
+                        </div>`;
+                });
             }
         }
 
-        // --- TON CODE EXISTANT INTACT ---
-        const GITHUB_URL = "https://raw.githubusercontent.com/Andrewdupont03/CrushCity/main/profiles.json";
-        
-        const grid = document.getElementById('grid');
-        const emptyState = document.getElementById('empty-state');
+        // NOUVEAU : Fonction de filtrage
+        function filterCategory(category, element) {
+            // 1. Changer la couleur du bouton cliqué
+            document.querySelectorAll('.category-chip').forEach(chip => chip.classList.remove('active'));
+            element.classList.add('active');
 
-        // Ajoute un timestamp pour éviter le cache
+            // 2. Filtrer les données en mémoire
+            if (category === 'tous') {
+                renderProfiles(allProfiles);
+            } else {
+                // On cherche les profils qui ont la même catégorie
+                const filtered = allProfiles.filter(p => p.categorie && p.categorie.toLowerCase() === category);
+                renderProfiles(filtered);
+            }
+
+            // 3. Petite vibration
+            if (window.Telegram.WebApp.HapticFeedback) window.Telegram.WebApp.HapticFeedback.selectionChanged();
+        }
+
+        // Chargement initial des données (Logique préservée)
         const fetchUrl = `${GITHUB_URL}?t=${new Date().getTime()}`;
-
         fetch(fetchUrl)
             .then(response => {
                 if (!response.ok) throw new Error("Fichier introuvable");
                 return response.json();
             })
             .then(data => {
-                if (!data || data.length === 0) {
-                    grid.style.display = 'none';
-                    emptyState.style.display = 'flex';
-                } else {
-                    grid.style.display = 'grid';
-                    emptyState.style.display = 'none';
-                    
-                    data.forEach(p => {
-                        grid.innerHTML += `
-                            <div class="card">
-                                <img src="${p.photo}" class="profile-pic" onerror="this.src='https://via.placeholder.com/150'">
-                                <div style="margin-top:10px; font-weight:bold;">${p.nom}, ${p.age} <span class="verified">✅</span></div>
-                                <p style="font-size:12px; color:#8fa1b3;">${p.ville}</p>
-                                <button class="action-btn" onclick="window.Telegram.WebApp.openTelegramLink('https://t.me/${p.user.replace('@','')}')">💬 Discuter</button>
-                            </div>`;
-                    });
-                }
+                allProfiles = data; // On sauvegarde les données pour pouvoir les filtrer plus tard
+                renderProfiles(allProfiles); // On affiche tout au début
             })
             .catch(error => {
                 console.error("Erreur:", error);
                 grid.style.display = 'none';
                 emptyState.style.display = 'flex';
                 document.querySelector('.empty-title').innerText = "Oups !";
-                document.querySelector('.empty-text').innerText = "Impossible de charger les profils pour le moment.";
+                emptyText.innerText = "Impossible de charger les profils pour le moment.";
             });
     </script>
 </body>
