@@ -82,5 +82,12 @@
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Mignonne220",
         "photo": "images/vanessa_564.jpg"
+    },
+    {
+        "nom": "C\u00e9cilia",
+        "age": "24 ans",
+        "ville": "\ud83d\udccd France/Paris",
+        "user": "@cecilia_bagllet",
+        "photo": "images/c\u00e9cilia_576.jpg"
     }
 ]
