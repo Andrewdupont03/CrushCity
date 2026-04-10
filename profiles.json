@@ -4,154 +4,176 @@
         "age": "23 ans",
         "ville": "\ud83d\udccdFrance/Paris",
         "user": "@Jeovanysmith",
-        "photo": "images/jocelyne_88.jpg"
+        "photo": "images/jocelyne_88.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Sophia",
         "age": "22 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Sophiaaa79",
-        "photo": "images/sophia_743.jpg"
+        "photo": "images/sophia_743.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Maya",
         "age": "26 ans",
         "ville": "\ud83d\udccdMayotte/nancy",
         "user": "@juesmaya_14",
-        "photo": "images/maya_170.jpg"
+        "photo": "images/maya_170.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Natacha",
         "age": "26 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@kovanatacha23",
-        "photo": "images/natacha_420.jpg"
+        "photo": "images/natacha_420.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Brenda",
         "age": "23 ans",
         "ville": "\ud83d\udccdGongo/Kinshasa",
         "user": "@cherie_ladouce_brenda",
-        "photo": "images/brenda_432.jpg"
+        "photo": "images/brenda_432.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Lea",
         "age": "23 ans",
         "ville": "\ud83d\udccdFrance/Paris",
         "user": "@lea95i",
-        "photo": "images/lea_444.jpg"
+        "photo": "images/lea_444.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Ellie lenn's",
         "age": "23 ans",
         "ville": "\ud83d\udccdFrance/Paris",
         "user": "@Ellielenns3",
-        "photo": "images/ellie_lenn's_456.jpg"
+        "photo": "images/ellie_lenn's_456.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Juliette",
         "age": "26 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Juline10t",
-        "photo": "images/juliette_468.jpg"
+        "photo": "images/juliette_468.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "\u00c9lisa Myer's",
         "age": "24 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Elisasrea",
-        "photo": "images/\u00e9lisa_myer's_480.jpg"
+        "photo": "images/\u00e9lisa_myer's_480.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Daria YAYA",
         "age": "23 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Dariayaya8",
-        "photo": "images/daria_yaya_492.jpg"
+        "photo": "images/daria_yaya_492.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "C\u00e9cile lynn",
         "age": "24 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@C23cile2",
-        "photo": "images/c\u00e9cile_lynn_556.jpg"
+        "photo": "images/c\u00e9cile_lynn_556.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Vanessa",
         "age": "23 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Mignonne220",
-        "photo": "images/vanessa_763.jpg"
+        "photo": "images/vanessa_763.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "C\u00e9cilia",
         "age": "24 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@cecilia_bagllet",
-        "photo": "images/c\u00e9cilia_713.jpg"
+        "photo": "images/c\u00e9cilia_713.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Florence",
         "age": "35 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Florence7308",
-        "photo": "images/florence_617.jpg"
+        "photo": "images/florence_617.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Solange",
         "age": "22 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Solangeperot",
-        "photo": "images/solange_637.jpg"
+        "photo": "images/solange_637.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Morgane",
         "age": "23 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Morgane223",
-        "photo": "images/morgane_661.jpg"
+        "photo": "images/morgane_661.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Anele",
         "age": "21 ans",
         "ville": "\ud83d\udccdC\u00f4te d'Ivoire/Yamoussoukro",
         "user": "@Anelebizi",
-        "photo": "images/anele_721.jpg"
+        "photo": "images/anele_721.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Colette",
         "age": "24 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@linerou",
-        "photo": "images/colette_733.jpg"
+        "photo": "images/colette_733.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Sophie dupont \ud83c\udf51",
         "age": "23 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Sophie_dupont06",
-        "photo": "images/sophie_dupont_\ud83c\udf51_755.jpg"
+        "photo": "images/sophie_dupont_\ud83c\udf51_755.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Sandra paillet \ud83c\udf51",
         "age": "23 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Sandra_paillet",
-        "photo": "images/sandra_paillet_\ud83c\udf51_775.jpg"
+        "photo": "images/sandra_paillet_\ud83c\udf51_775.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Ruby Catalina",
         "age": "24 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@rubycatalina04",
-        "photo": "images/ruby_catalina_791.jpg"
+        "photo": "images/ruby_catalina_791.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Kristy",
         "age": "21 ans",
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Kristydlop",
-        "photo": "images/kristy_803.jpg"
+        "photo": "images/kristy_803.jpg",
+        "categorie": "nuit chaude"
     },
     {
         "nom": "Sandra paillet \ud83c\udf51",
