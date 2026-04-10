@@ -96,5 +96,12 @@
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Florence7308",
         "photo": "images/florence_617.jpg"
+    },
+    {
+        "nom": "Solange",
+        "age": "22 ans",
+        "ville": "\ud83d\udccd France/Paris",
+        "user": "@Solangeperot",
+        "photo": "images/solange_629.jpg"
     }
 ]
