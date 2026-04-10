@@ -110,5 +110,12 @@
         "ville": "\ud83d\udccd France/Paris",
         "user": "@Morgane223",
         "photo": "images/morgane_661.jpg"
+    },
+    {
+        "nom": "Anele",
+        "age": "21 ans",
+        "ville": "\ud83d\udccdC\u00f4te d'Ivoire/Yamoussoukro",
+        "user": "@Anelebizi",
+        "photo": "images/anele_673.jpg"
     }
 ]
