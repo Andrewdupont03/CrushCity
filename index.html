@@ -77,6 +77,54 @@
         .nav-item .icon { font-size: 22px; transition: transform 0.2s; }
         .nav-item.active { color: #e5a322; }
         .nav-item.active .icon { transform: scale(1.2); }
+        
+        /* --- STYLES DU SKELETON (EFFET VIDÉO) --- */
+        
+        /* La grille de chargement (identique à .grid) */
+        .loading-skeleton {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        /* La carte fantôme unie (identique à .card) */
+        .skeleton-card {
+            background-color: #242f3d;
+            height: 250px; /* Hauteur moyenne d'une carte chargée */
+            border-radius: 12px;
+            border: 1px solid #2c3b4a;
+            position: relative;
+            overflow: hidden; /* Pour contenir l'effet shimmer */
+        }
+
+        /* L'effet de balayage lumineux (Shimmer) */
+        .skeleton-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100vw; /* Commence hors de l'écran à gauche */
+            width: 100vw;
+            height: 100%;
+            /* Dégradé lumineux au centre */
+            background: linear-gradient(
+                90deg,
+                rgba(36, 47, 61, 0) 0%,
+                rgba(44, 59, 74, 0.5) 50%,
+                rgba(36, 47, 61, 0) 100%
+            );
+            /* L'animation ! */
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Définition de l'animation CSS */
+        @keyframes shimmer {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(200vw); /* Balaye tout l'écran */
+            }
+        }
     </style>
 </head>
 <body>
@@ -93,6 +141,15 @@
                         <div class="category-chip" onclick="filterCategory('nuit chaude', this)">Nuit chaude 🔥</div>
                         <div class="category-chip" onclick="filterCategory('relation serieuse', this)">Sérieuse 💍</div>
                         <div class="category-chip" onclick="filterCategory('amis', this)">Amis 👋</div>
+                    </div>
+
+                    <div class="loading-skeleton" id="loading-skeleton">
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
                     </div>
 
                     <div class="empty-state" id="empty-state">
@@ -230,10 +287,16 @@
                 return response.json();
             })
             .then(data => {
+                // --- AJOUT : Cacher le skeleton ---
+                document.getElementById('loading-skeleton').style.display = 'none';
+                
                 allProfiles = data; // On sauvegarde les données pour pouvoir les filtrer plus tard
                 renderProfiles(allProfiles); // On affiche tout au début
             })
             .catch(error => {
+                // --- AJOUT : Cacher le skeleton aussi en cas d'erreur ---
+                document.getElementById('loading-skeleton').style.display = 'none';
+
                 console.error("Erreur:", error);
                 grid.style.display = 'none';
                 emptyState.style.display = 'flex';
