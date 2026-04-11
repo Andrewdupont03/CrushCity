@@ -32,6 +32,7 @@
             margin-bottom: 15px;
             /* Masquer la barre de défilement mais garder le scroll */
             scrollbar-width: none; 
+            scroll-behavior: smooth;   /* ← AJOUTÉ */
         }
         .category-bar::-webkit-scrollbar { display: none; }
         
@@ -276,13 +277,14 @@
         }
 
         function filterCategory(category, element) {
+            // 1. Désactive tous les chips et active celui cliqué
             document.querySelectorAll('.category-chip').forEach(chip => chip.classList.remove('active'));
             element.classList.add('active');
 
+            // 2. Filtrage des profils (logique inchangée)
             if (category === 'tous') {
                 renderProfiles(allProfiles);
             } else {
-                // Version robuste : enlève les emojis et espaces superflus
                 const filtered = allProfiles.filter(p => {
                     if (!p.categorie) return false;
                     const clean = p.categorie.toLowerCase()
@@ -293,6 +295,19 @@
                 renderProfiles(filtered);
             }
 
+            // 3. NOUVEAUTÉ : Centrage automatique du chip cliqué
+            const bar = document.querySelector('.category-bar');
+            if (bar && element) {
+                const scrollLeft = element.offsetLeft 
+                                 - (bar.clientWidth / 2) 
+                                 + (element.clientWidth / 2);
+                bar.scrollTo({
+                    left: scrollLeft,
+                    behavior: 'smooth'
+                });
+            }
+
+            // 4. Vibration (inchangée)
             if (window.Telegram.WebApp.HapticFeedback) window.Telegram.WebApp.HapticFeedback.selectionChanged();
         }
 
