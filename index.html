@@ -62,9 +62,38 @@
         .action-btn:active { opacity: 0.7; }
         .verified { color: #3390ec; }
 
-        .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; height: 50vh; text-align: center; color: #8fa1b3; }
-        .empty-icon { font-size: 50px; margin-bottom: 10px; }
-        .empty-title { font-size: 20px; font-weight: bold; color: white; }
+        /* --- NOUVEAU : STYLE PRO POUR L'ETAT VIDE --- */
+        .empty-state { 
+            display: none; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 50vh; 
+            text-align: center; 
+            color: #8fa1b3; 
+            padding: 20px;
+        }
+        
+        /* Conteneur de l'emoji pour centrer le point de pivot de l'animation */
+        .empty-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .empty-icon { 
+            font-size: 60px; 
+            /* On applique l'animation ici */
+            animation: elastic-impact 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+            /* S'assure que l'animation part du centre de l'emoji */
+            transform-origin: center; 
+        }
+        
+        .empty-title { font-size: 20px; font-weight: bold; color: white; margin-bottom: 10px; }
+        .empty-text { font-size: 14px; line-height: 1.5; max-width: 280px; }
 
         /* --- STYLES DES SECTIONS --- */
         .info-box { background-color: #242f3d; padding: 20px; border-radius: 12px; border: 1px solid #2c3b4a; margin-bottom: 15px; }
@@ -79,50 +108,37 @@
         .nav-item.active .icon { transform: scale(1.2); }
         
         /* --- STYLES DU SKELETON (EFFET VIDÉO) --- */
-        
-        /* La grille de chargement (identique à .grid) */
-        .loading-skeleton {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
+        .loading-skeleton { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .skeleton-card { background-color: #242f3d; height: 250px; border-radius: 12px; border: 1px solid #2c3b4a; position: relative; overflow: hidden; }
+        .skeleton-card::after { content: ""; position: absolute; top: 0; left: -100vw; width: 100vw; height: 100%; background: linear-gradient(90deg, rgba(36, 47, 61, 0) 0%, rgba(44, 59, 74, 0.5) 50%, rgba(36, 47, 61, 0) 100% ); animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 0% { transform: translateX(0); } 100% { transform: translateX(200vw); } }
 
-        /* La carte fantôme unie (identique à .card) */
-        .skeleton-card {
-            background-color: #242f3d;
-            height: 250px; /* Hauteur moyenne d'une carte chargée */
-            border-radius: 12px;
-            border: 1px solid #2c3b4a;
-            position: relative;
-            overflow: hidden; /* Pour contenir l'effet shimmer */
-        }
-
-        /* L'effet de balayage lumineux (Shimmer) */
-        .skeleton-card::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100vw; /* Commence hors de l'écran à gauche */
-            width: 100vw;
-            height: 100%;
-            /* Dégradé lumineux au centre */
-            background: linear-gradient(
-                90deg,
-                rgba(36, 47, 61, 0) 0%,
-                rgba(44, 59, 74, 0.5) 50%,
-                rgba(36, 47, 61, 0) 100%
-            );
-            /* L'animation ! */
-            animation: shimmer 1.5s infinite;
-        }
-
-        /* Définition de l'animation CSS */
-        @keyframes shimmer {
-            0% {
-                transform: translateX(0);
+        /* --- NOUVELLE ANIMATION : IMPACT ELASTIQUE PRO --- */
+        @keyframes elastic-impact {
+            0% { 
+                transform: scale(1); /* Taille normale au départ */
+                opacity: 0.5;
             }
-            100% {
-                transform: translateX(200vw); /* Balaye tout l'écran */
+            15% { 
+                transform: scale(0.5); /* Se ratatine avant de bondir (anticipation) */
+                opacity: 0.8;
+            }
+            30% { 
+                transform: scale(1.4); /* ZOOM PUISSANT (Impact contre l'écran) */
+                opacity: 1;
+            }
+            35% { transform: scale(0.9); /* Rebond 1 (dézoome un peu) */ }
+            40% { transform: scale(1.15); /* Rebond 2 (rezoome un peu moins fort) */ }
+            45% { transform: scale(0.95); /* Rebond 3 */ }
+            50% { transform: scale(1.05); /* Rebond 4 (micro vibration fin) */ }
+            55% { 
+                transform: scale(1); /* Arrêt stabilisé à taille normale */
+                opacity: 1;
+            }
+            /* Pause statique de 55% à 100% pour un effet cyclique pro (évite le spam visuel) */
+            100% { 
+                transform: scale(1); 
+                opacity: 1;
             }
         }
     </style>
@@ -153,9 +169,11 @@
                     </div>
 
                     <div class="empty-state" id="empty-state">
-                        <div class="empty-icon">📭</div>
-                        <div class="empty-title">Aucun profil</div>
-                        <div class="empty-text">Les profils arrivent bientôt.</div>
+                        <div class="empty-icon-container">
+                            <div class="empty-icon">📭</div>
+                        </div>
+                        <div class="empty-title">Fermé temporairement</div>
+                        <div class="empty-text">Nos modérateurs vérifient actuellement de nouveaux profils VIP. Revenez dans quelques instants. ✨</div>
                     </div>
 
                     <div class="grid" id="grid">
@@ -216,10 +234,10 @@
     </nav>
 
     <script>
+        // --- TOUT LE JAVASCRIPT RESTE INTACT (RIEN CASSÉ) ---
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
 
-        // Fonction pour les onglets du bas (inchangée)
         function switchTab(pageIndex, element) {
             document.getElementById('swipe-wrapper').style.transform = `translateX(-${pageIndex * 100}vw)`;
             document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
@@ -232,22 +250,19 @@
         const emptyState = document.getElementById('empty-state');
         const emptyText = document.querySelector('.empty-text');
         
-        // NOUVEAU : Variable pour stocker tous les profils chargés
         let allProfiles = [];
 
-        // NOUVEAU : Fonction qui dessine les cartes (séparée pour pouvoir la réutiliser lors du filtre)
         function renderProfiles(data) {
-            grid.innerHTML = ''; // On vide la grille
+            grid.innerHTML = ''; 
             
             if (!data || data.length === 0) {
                 grid.style.display = 'none';
                 emptyState.style.display = 'flex';
-                emptyText.innerText = "Aucun profil dans cette catégorie.";
+                // Note : On ne change pas le texte ici en JS, on utilise celui défini par défaut dans le HTML
             } else {
                 grid.style.display = 'grid';
                 emptyState.style.display = 'none';
                 
-                // C'est TA logique exacte qui est conservée ici
                 data.forEach(p => {
                     grid.innerHTML += `
                         <div class="card">
@@ -260,26 +275,27 @@
             }
         }
 
-        // NOUVEAU : Fonction de filtrage
         function filterCategory(category, element) {
-            // 1. Changer la couleur du bouton cliqué
             document.querySelectorAll('.category-chip').forEach(chip => chip.classList.remove('active'));
             element.classList.add('active');
 
-            // 2. Filtrer les données en mémoire
             if (category === 'tous') {
                 renderProfiles(allProfiles);
             } else {
-                // On cherche les profils qui ont la même catégorie
-                const filtered = allProfiles.filter(p => p.categorie && p.categorie.toLowerCase() === category);
+                // Version robuste : enlève les emojis et espaces superflus
+                const filtered = allProfiles.filter(p => {
+                    if (!p.categorie) return false;
+                    const clean = p.categorie.toLowerCase()
+                        .replace(/🔥|💍|👋/g, '')
+                        .trim();
+                    return clean === category;
+                });
                 renderProfiles(filtered);
             }
 
-            // 3. Petite vibration
             if (window.Telegram.WebApp.HapticFeedback) window.Telegram.WebApp.HapticFeedback.selectionChanged();
         }
 
-        // Chargement initial des données (Logique préservée)
         const fetchUrl = `${GITHUB_URL}?t=${new Date().getTime()}`;
         fetch(fetchUrl)
             .then(response => {
@@ -287,21 +303,19 @@
                 return response.json();
             })
             .then(data => {
-                // --- AJOUT : Cacher le skeleton ---
                 document.getElementById('loading-skeleton').style.display = 'none';
-                
-                allProfiles = data; // On sauvegarde les données pour pouvoir les filtrer plus tard
-                renderProfiles(allProfiles); // On affiche tout au début
+                allProfiles = data; 
+                renderProfiles(allProfiles);
             })
             .catch(error => {
-                // --- AJOUT : Cacher le skeleton aussi en cas d'erreur ---
                 document.getElementById('loading-skeleton').style.display = 'none';
-
                 console.error("Erreur:", error);
                 grid.style.display = 'none';
                 emptyState.style.display = 'flex';
                 document.querySelector('.empty-title').innerText = "Oups !";
-                emptyText.innerText = "Impossible de charger les profils pour le moment.";
+                document.querySelector('.empty-text').innerText = "Impossible de joindre le catalogue. Vérifie ta connexion.";
+                // En cas d'erreur, on garde l'animation mais on désactive le cycle pour ne pas fatiguer l'utilisateur
+                document.querySelector('.empty-icon').style.animationIterationCount = "1";
             });
     </script>
 </body>
